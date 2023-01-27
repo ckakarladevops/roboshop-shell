@@ -22,4 +22,5 @@ cp ${script_location}/Files/mongodb.repo /etc/yum.repos.d/mongodb.repo
 
 yum install mongodb-org-shell -y
 
-mongo --host localhost </app/schema/catalogue.js
+
+mongo --host 172.31.3.181 </app/schema/catalogue.js
