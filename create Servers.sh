@@ -8,7 +8,6 @@ env=dev
 #############################
 
 
-
 create_ec2() {
   PRIVATE_IP=$(aws ec2 run-instances \
       --image-id ${AMI_ID} \
