@@ -19,7 +19,6 @@ systemctl enable catalogue
 systemctl start catalogue
 
 cp ${script_location}/Files/mongodb.repo /etc/yum.repos.d/mongodb.repo
-
 yum install mongodb-org-shell -y
 
 mongo --host mongodb-dev.kakarla.store </app/schema/catalogue.js
