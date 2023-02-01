@@ -8,7 +8,7 @@ status_check() {
   else
     echo -e "\e[31mFAILURE\e[0m"
     echo "Refer log file for more information, LOG - ${LOG}"
-    exit
+    exit 1
   fi
 }
 
