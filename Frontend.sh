@@ -1,43 +1,31 @@
-script_location=$(pwd)
-LOG=/tmp/roboshop.log
+source common.sh
 
-status_check() {
-  if [ $? -eq 0 ]
-  then
-    echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e "\e[32mFAILURE\e[0m"
-    echo "Refer log file for more information, LOG - ${LOG}"
-    exit
-  fi
-}
-
-echo -e "\e[35m Install Nginx\e[0m"
+print_head "Configuring nginx web server"
 yum install nginx -y &>>${LOG}
 status_check
 
-echo -e "\e[35m Remove old content\e[0m"
+print_head "Remove old content"
 rm -rf /usr/share/nginx/html/* &>>${LOG}
 status_check
 
-echo -e "\e[35m Download Frontend content\e[0m"
+print_head "Download Frontend content"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>${LOG}
 status_check
 
 cd /usr/share/nginx/html &>>${LOG}
 
-echo -e "\e[35m extract Frontend content file\e[0m"
+print_head "extract Frontend content file"
 unzip /tmp/frontend.zip &>>${LOG}
 status_check
 
-echo -e "\e[35m copy roboshop nginx config file\e[0m"
+print_head "copy roboshop nginx config file"
 cp ${script_location}/Files/nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${LOG}
 status_check
 
-echo -e "\e[35m enable Nginx\e[0m"
+print_head "enable Nginx"
 systemctl enable nginx &>>${LOG}
 status_check
 
-echo -e "\e[35m restart Nginx\e[0m"
+print_head "restart Nginx"
 systemctl restart nginx &>>${LOG}
 status_check

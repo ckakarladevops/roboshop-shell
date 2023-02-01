@@ -1,9 +1,17 @@
+source common.sh
 
+print_head "configuring nodejs repos"
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG}
+status_check
 
+print_head "Install Nodejs"
+yum install nodejs -y &>>${LOG}
+status_check
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-yum install nodejs -y
-#useradd roboshop
+print_head "Adding Application user"
+#useradd roboshop &>>${LOG}
+status_check
+
 mkdir -p /app
 curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 rm -rf /app/*
