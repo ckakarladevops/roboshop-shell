@@ -58,3 +58,5 @@ status_check
 print_head "load schema"
 mongo --host mongodb-dev.kakarla.store </app/schema/catalogue.js &>>${LOG}
 status_check
+
+echo [ $? ]
