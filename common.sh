@@ -80,6 +80,6 @@ if [ ${schema_load} == "True" ]; then
   print_head "load schema"
   mongo --host mongodb-dev.kakarla.store </app/schema/${component}.js &>>${LOG}
   status_check
+  
 fi
-
 }
