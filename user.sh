@@ -9,16 +9,13 @@ yum install nodejs -y &>>${LOG}
 status_check
 
 print_head "Adding Application user"
-id roboshop &>>${LOG}
-if [ $? -ne 0 ]; then
-  useradd roboshop &>>${LOG}
-fi
+useradd roboshop &>>${LOG}
 status_check
 
 mkdir -p /app
 
 print_head "Downloading App content"
-curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${LOG}
+curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip &>>${LOG}
 status_check
 
 print_head "remove the old content"
@@ -27,7 +24,7 @@ status_check
 
 print_head "extracting App content"
 cd /app
-unzip /tmp/catalogue.zip &>>${LOG}
+unzip /tmp/user.zip &>>${LOG}
 status_check
 
 print_head "Installing nodejs dependencies"
@@ -36,7 +33,7 @@ npm install &>>${LOG}
 status_check
 
 print_head "configuring catalogue service file"
-cp ${script_location}/Files/catalogue.service /etc/systemd/system/catalogue.service &>>${LOG}
+cp ${script_location}/Files/user.service /etc/systemd/system/user.service &>>${LOG}
 status_check
 
 print_head "reload systemd"
@@ -44,11 +41,11 @@ systemctl daemon-reload &>>${LOG}
 status_check
 
 print_head "enable catalogue"
-systemctl enable catalogue &>>${LOG}
+systemctl enable user &>>${LOG}
 status_check
 
 print_head "start catalogue service"
-systemctl start catalogue &>>${LOG}
+systemctl start user &>>${LOG}
 status_check
 
 print_head "configuring mongo repo"
@@ -59,7 +56,7 @@ yum install mongodb-org-shell -y &>>${LOG}
 status_check
 
 print_head "load schema"
-mongo --host mongodb-dev.kakarla.store </app/schema/catalogue.js &>>${LOG}
+mongo --host mongodb-dev.kakarla.store </app/schema/user.js &>>${LOG}
 status_check
 
-echo [ $? ]
+
