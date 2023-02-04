@@ -42,6 +42,11 @@ APP_PREREQ() {
 }
 
 systemd_setup() {
+
+  print_head "Configuring ${component} Service File"
+  cp ${script_location}/Files/${component}.service /etc/systemd/system/${component}.service &>>${LOG}
+  status_check
+
   print_head "reload systemd"
   systemctl daemon-reload &>>${LOG}
   status_check
