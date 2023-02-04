@@ -83,7 +83,7 @@ LOAD_SCHEMA() {
     status_check
 
     print_head "load schema"
-    mysql -h mysql-dev.kakarla.store -uroot -p${root_mysql_password} < /app/schema/{component}.sql &>>${LOG}
+    mysql -h mysql-dev.kakarla.store -uroot -p${root_mysql_password} < /app/schema/${component}.sql &>>${LOG}
     status_check
   fi
 
