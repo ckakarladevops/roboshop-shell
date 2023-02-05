@@ -132,3 +132,23 @@ MAVEN() {
 
   LOAD_SCHEMA
 }
+
+PYTHON() {
+
+  print_head "Install Python"
+  yum install python36 gcc python3-devel -y &>>${LOG}
+  status_check
+
+  print_head "Install Python"
+  yum install python36 gcc python3-devel -y &>>${LOG}
+  status_check
+
+  APP_PREREQ
+
+  print_head "Installing Python dependencies"
+  cd /app &>>${LOG}
+  pip3.6 install -r requirements.txt &>>${LOG}
+  status_check
+
+  systemd_setup
+}
