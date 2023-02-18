@@ -139,10 +139,6 @@ PYTHON() {
   yum install python36 gcc python3-devel -y &>>${LOG}
   status_check
 
-  print_head "Install Python"
-  yum install python36 gcc python3-devel -y &>>${LOG}
-  status_check
-
   APP_PREREQ
 
   print_head "Installing Python dependencies"
