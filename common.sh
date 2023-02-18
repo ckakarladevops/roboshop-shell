@@ -174,5 +174,4 @@ GOLANG() {
 
   systemd_setup
 
-
 }

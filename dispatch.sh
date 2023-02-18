@@ -8,5 +8,6 @@ if [ -z "${roboshop_rabbitmq_password}" ]; then
   exit 1
 fi
 
+
 GOLANG
 
